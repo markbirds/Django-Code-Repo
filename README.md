@@ -35,4 +35,5 @@ Django codes for future use. Includes forms in django(raw forms, django forms, m
 |-- .gitignore
 |-- Pipfile
 |-- Pipfile.lock
+|-- README.md
 ```
