@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delete
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'todo_list:index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+{% for user in users %}
+<div class="card bg-light text-dark my-2">
+    <div class="card-body">
+        <p>
+            <span class="lead">{{user.user}}</span><br>
+            <span>{{user.pub_date}}</span><br>
+            <a href="{% url 'todo_list:delete_user' user.id%}" class="card-link">Delete user</a>
+            <a href="{% url 'todo_list:delete_tasks' user.id%}" class="card-link">Delete tasks</a>
+        </p>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

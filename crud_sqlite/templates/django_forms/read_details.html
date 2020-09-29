@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Read
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'django_forms:read' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+<div class="card bg-light text-dark my-2">
+    <div class="card-body">
+        <p class="lead">{{record.name}}</p>
+        <p>
+            Age: {{record.age}} <br>
+            Email: {{record.email}} <br>
+            Birthday: {{record.birthday}} <br>
+            Favorite Programming Language: {{record.language}} <br>
+            Likes Programming: {{record.programmer}}
+        </p>
+    </div>
+</div>
+{% endblock %}

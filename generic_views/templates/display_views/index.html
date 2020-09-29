@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Display View
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+<ul>
+    <li>
+        <a href="{% url 'display_views:list' %}">ListView</a>
+    </li>
+    <li>
+        <a href="{% url 'display_views:detail' %}">DetailView</a>
+    </li>
+</ul>
+{% endblock %}

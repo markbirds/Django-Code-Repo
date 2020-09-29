@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title%}
+Django Forms
+{% endblock %}
+
+{% block content%}
+<div class="text-center">
+    <a href="{% url 'django_forms:create' %}" class="btn btn-success" role="button">Create</a>
+    <a href="{% url 'django_forms:read' %}" class="btn btn-info" role="button">Read</a>
+    <a href="{% url 'django_forms:update' %}" class="btn btn-warning" role="button">Update</a>
+    <a href="{% url 'django_forms:delete' %}" class="btn btn-danger" role="button">Delete</a>
+</div>
+<div class="text-center mt-2">
+    <a href="{% url 'index:index' %}">Back</a>
+</div>
+{% endblock %}

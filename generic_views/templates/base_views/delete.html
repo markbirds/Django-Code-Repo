@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Delete
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'base_views:base' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+<div id="cards">
+{% for name in names %}
+    <div class="card bg-light text-dark my-2">
+        <div class="card-body">
+            <span>Name ID: {{ name.id }}</span><br>
+            <span>Name: {{ name.name }}</span><br>
+            <a href="{% url 'base_views:delete_record' name.id %}">Delete</a>        
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

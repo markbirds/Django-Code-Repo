@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="text-center">
+        <button type="button" class="btn btn-primary" id="get_data">Get Data</button>         
+        <a href="{% url 'index' %}" class="btn btn-danger" role="button">Back</a>      
+    </div>
+    <div id="users"></div>
+{% endblock %}
+
+{% block script %}
+<script>
+
+$(document).ready(function(){
+    $("#get_data").click(function(){
+        $.get("{% url 'api' %}", function(data, status){
+            var output="";
+            users = JSON.parse(data);
+            console.log(users);
+            for(var i=0;i<users.length;i++){
+                console.log(users[i].name);
+                output+=
+                '<div class="card bg-light text-dark my-2">'+
+                    '<div class="card-body">'+
+                        '<span class="lead">'+users[i].fields.name+'</span><br>'+
+                        '<span>'+users[i].fields.age+'</span> '+
+                    '</div>'+
+                '</div>';
+            }
+            $('#users').html(output);
+        });
+    });
+});
+
+</script>
+{% endblock %}

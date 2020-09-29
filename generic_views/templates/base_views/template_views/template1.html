@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Read
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'base_views:template_page' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+<div id="cards">
+{% for name in names %}
+    <div class="card bg-light text-dark my-2">
+        <div class="card-body">
+            <span>Name ID: {{ name.id }}</span><br>
+            <span>Name: {{ name.name }}</span><br>      
+        </div>
+    </div>
+{% endfor %}
+</div>
+
+
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

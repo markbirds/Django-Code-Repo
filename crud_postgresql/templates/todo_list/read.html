@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Read
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'todo_list:index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+{% for user in users %}
+<div class="card bg-light text-dark my-2">
+    <div class="card-body">
+        <p>
+            <span class="lead">{{user.user}}</span><br>
+            <span>{{user.pub_date}}</span><br>
+            <a href="{% url 'todo_list:read_tasks' user.id %}" class="card-link">Read tasks</a>
+        </p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}

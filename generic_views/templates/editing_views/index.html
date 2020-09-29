@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Display View
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+<ul>
+    <li>
+        <a href="{% url 'editing_views:form' %}">FormView</a>
+    </li>
+    <li>
+        <a href="{% url 'editing_views:create' %}">CreateView</a>
+    </li>
+    <li>
+        <a href="{% url 'editing_views:updatelist' %}">UpdateView</a>
+    </li>
+    <li>
+        <a href="{% url 'editing_views:deletelist' %}">DeleteView</a>
+    </li>
+</ul>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title%}
+Todo-list
+{% endblock %}
+
+{% block content%}
+<div class="text-center">
+    <p class="lead">Todo-list</p>
+</div>
+<div class="text-center">
+    <a href="{% url 'todo_list:create' %}" class="btn btn-success" role="button">Create</a>
+    <a href="{% url 'todo_list:read' %}" class="btn btn-info" role="button">Read</a>
+    <a href="{% url 'todo_list:update' %}" class="btn btn-warning" role="button">Update</a>
+    <a href="{% url 'todo_list:delete' %}" class="btn btn-danger" role="button">Delete</a>
+</div>
+{% endblock %}

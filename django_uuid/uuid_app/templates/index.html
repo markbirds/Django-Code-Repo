@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+    <li>
+        <a href="{% url 'add' %}">Add user</a>
+    </li>
+    <li>
+        <a href="{% url 'view' %}">View all users</a>
+    </li>
+</ul>
+{% endblock %}

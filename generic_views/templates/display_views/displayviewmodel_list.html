@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Read
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'display_views:index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+{% for name in object_list %}
+<div id="cards">
+    <div class="card bg-light text-dark my-2">
+        <div class="card-body">
+            <span>Name ID: {{ name.id }}</span><br>
+            <span>Name: {{ name.name }}</span><br>   
+            <span>Age: {{ name.age }}</span><br>       
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

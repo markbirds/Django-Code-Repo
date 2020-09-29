@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-right mb-2">
+    <a href="{% url 'login' %}" class="btn btn-secondary" role="button">Logout</a>
+</div>
+
+{% if 'username' in request.session %}
+<h3>Hello {{ request.session.username }}</h3>
+{% else %}
+<h3>No session found.</h3>
+{% endif %}
+
+{% endblock %}

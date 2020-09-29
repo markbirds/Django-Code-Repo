@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+<p class="lead">Index</p>
+
+<ul>
+    <li><a href="{% url 'raw_forms:index' %}">Raw HTML Forms</a></li>
+    <li><a href="{% url 'django_forms:index' %}">Django Forms</a></li>
+    <li><a href="{% url 'model_forms:index' %}">Django ModelForm</a></li>
+</ul>
+{% endblock %}

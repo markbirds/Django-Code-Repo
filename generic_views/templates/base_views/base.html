@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Base
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'base_views:index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+<ul>
+    <li>
+        <a href="{% url 'base_views:add' %}">Add</a>
+    </li>
+    <li>
+        <a href="{% url 'base_views:read' %}">Read</a>
+    </li>
+    <li>
+        <a href="{% url 'base_views:delete' %}">Delete</a>
+    </li>
+</ul>
+
+{% endblock %}
+
+{% block script %}
+{% endblock %}

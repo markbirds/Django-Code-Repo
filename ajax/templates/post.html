@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="text-right">      
+        <a href="{% url 'index' %}" class="btn btn-danger" role="button">Back</a>      
+    </div>
+    <div class="card mt-2">
+        <div class="card-body">
+            {% for user in users %}
+                <p class="m-0">{{user.id}}</p>
+                {% csrf_token %}
+                <button class="btn btn-primary my-2" id="{{user.id}}" onclick="get_data(this.id)">Get name and age</button>
+            {% endfor %}
+        </div>
+    </div>
+    <div id="user_data">
+
+    </div>
+{% endblock %}
+
+{% block script %}
+<script>
+
+function get_data(id){
+    $.post("{% url 'api' %}",
+    {
+        id: id,
+        csrfmiddlewaretoken: $('input:first').val()
+    },
+    function(data, status){
+        $('#user_data').html(
+            '<div class="card">'+
+                '<div class="card-body">'+
+                    '<span class="lead">'+data.name+'</span><br>'+
+                    '<span>'+data.id+'</span><br>'+
+                    '<span>'+data.age+'</span>'+
+                '</div>'+
+            '</div>'
+        );
+    });
+}
+
+</script>
+{% endblock %}

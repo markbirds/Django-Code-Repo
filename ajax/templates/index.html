@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<ul>
+    <li>
+        <a href="{% url 'get' %}">Get</a>
+    </li>
+    <li>
+        <a href="{% url 'post' %}">Post</a>
+    </li>
+</ul>
+{% endblock %}

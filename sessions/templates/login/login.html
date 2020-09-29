@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="text-right mb-2">
+    <a href="{% url 'index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+{% if 'username' in request.session %}
+<h3>Hello  {{ request.session.username }}</h3>
+{% else %}
+<h3>No session found.</h3>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="text-center">
+        <input type="submit" value="Login" class="btn btn-success">
+    </div>
+</form>
+{% endblock %}
+

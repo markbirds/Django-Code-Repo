@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+<div class="text-center my-3">
+    Class-based Views
+</div>
+<ul>
+    <li>
+        <a href="{% url 'base_views:index' %}">Base views</a>
+    </li>
+    <li>
+        <a href="{% url 'display_views:index' %}">Generic display views</a>
+    </li>
+    <li>
+        <a href="{% url 'editing_views:index' %}">Generic editing views</a>
+    </li>
+</ul>
+{% endblock %}

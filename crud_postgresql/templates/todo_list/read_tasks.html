@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Read
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'todo_list:read' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+<div class="card bg-light text-dark my-2">
+    <div class="card-body">
+        {% if tasks %}
+            {% for task in tasks %}
+            <p>
+                <span class="lead">{{ task.tasks }}</span><br>
+                <span>Date added: {{ task.date_created }}</span>
+            </p>
+            {% endfor %}
+        {% else %}
+            <p>
+                No tasks added.
+            </p>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

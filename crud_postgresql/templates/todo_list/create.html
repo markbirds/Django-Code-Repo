@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Add User
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'todo_list:index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+<ul>
+    <li>
+        <a href="{% url 'todo_list:add_user' %}">Add user</a>
+    </li>
+    <li>
+        <a href="{% url 'todo_list:add_task' %}">Add task</a>
+    </li>
+</ul>
+{% endblock %}

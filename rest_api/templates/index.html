@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rest Ajax</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="col-sm-6 m-auto">
+            <div class="text-center">
+                <h3>Users</h3>
+            </div>
+            <div id="users">
+            {% for user in users %}
+                <div class="card my-2">
+                    <div class="card-body">
+                        <div class="clearfix">
+                            <div class="float-left">
+                                <span>{{user.id}}</span><br>
+                                <span>{{user.name}}</span><br>
+                                <span>{{user.age}}</span><br> 
+                            </div>
+                            <div class="float-right">
+                                <button id="{{user.id}}" class="btn btn-danger" onclick="delete_user(this.id)">Delete</button>           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+            <div class="p-2 my-2">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name">
+                </div>
+                <div class="form-group">
+                    <label for="age">Age:</label>
+                    <input type="number" class="form-control" id="age">
+                </div>
+                <div class="form-group">
+                    <label for="language">Favorite Programming Language:</label>
+                    <input type="text" class="form-control" id="language">
+                </div>
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" id="likes_programming" name="example1">
+                    <label class="custom-control-label" for="likes_programming">Likes Programming</label>
+                </div>
+                <div class="text-right my-2">
+                    <button id="add" class="btn btn-success">Add</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+{% load static %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- loading static files -->
+<!-- <script src="{% static 'scripts/script.js' %}"></script> --> 
+<!-- placed the script here so i can use reverse url -->
+<script>
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+$(document).ready(function(){
+    $("#add").click(function(){
+        
+        var url = "{% url 'api:usersCreate' %}";
+
+        var name = $('#name').val().trim();
+        var age = $('#age').val();
+        var language = $('#language').val();
+        var likes_programming = $('#likes_programming').prop("checked");
+
+        $('#name').val('');
+        $('#age').val('');
+        $('#language').val('');
+        $('#likes_programming'). prop("checked", false);
+
+        fetch(url,{
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+                'X-CSRFToken': csrftoken
+            },
+            body: JSON.stringify({
+                'name': name,
+                'age': age,
+                'language': language,
+                'programmer': likes_programming
+            })
+        }).then(function(response){
+            $.get("{% url 'api:userList' %}", function(data, status){
+            var output = "";
+            for(var i=0;i<data.length;i++){
+                output +=
+                '<div class="card my-2">' +
+                    '<div class="card-body">' +
+                        '<div class="clearfix">' +
+                            '<div class="float-left">' +
+                                '<span>'+ data[i].id +'</span><br>' +
+                                '<span>'+ data[i].name +'</span><br>' +
+                                '<span>'+ data[i].age +'</span><br> ' +
+                            '</div>' +
+                            '<div class="float-right">' +
+                                '<button id="'+ data[i].id +'" class="btn btn-danger" onclick="delete_user(this.id)">Delete</button>' +      
+                            '</div>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>'
+            }
+            $('#users').html(output);
+            });     
+        });
+    });
+});
+
+function delete_user(id){
+    var url = "http://127.0.0.1:8000/api/delete/"+id;
+    fetch(url,{
+        method: 'DELETE',
+        headers: {
+            'Content-type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+    }).then(function(response){
+        $.get("{% url 'api:userList' %}", function(data, status){
+        var output = "";
+        for(var i=0;i<data.length;i++){
+            output +=
+            '<div class="card my-2">' +
+                '<div class="card-body">' +
+                    '<div class="clearfix">' +
+                        '<div class="float-left">' +
+                            '<span>'+ data[i].id +'</span><br>' +
+                            '<span>'+ data[i].name +'</span><br>' +
+                            '<span>'+ data[i].age +'</span><br> ' +
+                        '</div>' +
+                        '<div class="float-right">' +
+                            '<button id="'+ data[i].id +'" class="btn btn-danger" onclick="delete_user(this.id)">Delete</button>' +      
+                        '</div>' +
+                    '</div>' +
+                '</div>' +
+            '</div>'
+        }
+        $('#users').html(output);
+        });     
+    });
+}
+</script>
+</body>
+</html>

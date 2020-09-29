@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Create
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'django_forms:index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+<form action="{% url 'django_forms:create' %}" method='POST'>
+{% csrf_token %}
+
+{{ form.non_field_errors }}
+
+<div class="form-group">
+    {{ form.name.errors }}
+    {{ form.name.label_tag }}
+    {{ form.name }}
+</div>
+
+<div class="form-group">
+    {{ form.age.errors }}
+    {{ form.age.label_tag }}
+    {{ form.age }}
+</div>
+
+<div class="form-group">
+    {{ form.email.errors }}
+    {{ form.email.label_tag }}
+    {{ form.email }}
+</div>
+
+<div class="form-group">
+    {{ form.birthday.errors }}
+    {{ form.birthday.label_tag }}
+    {{ form.birthday }}
+</div>
+
+<div class="form-group">
+    {{ form.language.errors }}
+    {{ form.language.label_tag }}
+    {{ form.language }}
+</div>
+
+<div class="custom-control custom-checkbox">
+    {{ form.programmer.errors }}
+    {{ form.programmer }}
+    <label class="custom-control-label" for="id_programmer">Likes programming or not?</label>
+</div>
+
+<div class="text-right my-2">
+    <button type="submit" class="btn btn-success">Create</button>
+</div>
+</form>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Update
+{% endblock %}
+
+{% block content %}
+<div class="text-right mb-2">
+    <a href="{% url 'django_forms:index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+{% for record in forms %}
+<div class="card bg-light text-dark my-2">
+    <div class="card-body">
+        <p><span class="lead">{{ record.name }}</span>
+            {% if record.programmer == True %}
+            <span> - Likes Programming</span>
+            {% else %}
+            <span> - Does not like Programming</span>
+            {% endif %}
+        </p>
+        <a href="{% url 'django_forms:update_form' record.id %}">Update</a>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

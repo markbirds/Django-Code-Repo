@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}
+View
+{% endblock %}
+
+{% block content %}
+
+<div class="text-right mb-2">
+    <a href="{% url 'index' %}" class="btn btn-secondary" role="button">Back</a>
+</div>
+
+{% for user in users %}
+<div class="card bg-light text-dark my-2">
+    <div class="card-body">
+        <p>
+            <span class="lead">{{user.name}}</span><br>
+            <span>User UUID: {{user.id}}</span><br>
+            <span>{{user.description}}</span><br>
+        </p>
+    </div>
+</div>
+{% endfor %}
+
+{% endblock %}
