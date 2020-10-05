@@ -33,6 +33,7 @@ Django codes for future use. Includes forms in django(raw forms, django forms, m
 |     |-- session_app
 |     |-- templates
 |-- .gitignore
+|-- LICENSE
 |-- Pipfile
 |-- Pipfile.lock
 |-- README.md
