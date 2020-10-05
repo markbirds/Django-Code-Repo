@@ -37,3 +37,7 @@ Django codes for future use. Includes forms in django(raw forms, django forms, m
 |-- Pipfile.lock
 |-- README.md
 ```
+
+### License
+
+This repository is licensed under the terms of the [MIT License](LICENSE).
