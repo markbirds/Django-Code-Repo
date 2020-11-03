@@ -16,6 +16,8 @@ Django codes for future use. Includes forms in django(raw forms, django forms, m
 |     |-- django_forms
 |     |-- model_forms
 |     |-- templates
+|-- django_channels
+|     |-- chat_app
 |-- django_uuid
 |     |-- uuid_app
 |     |-- templates

@@ -10,6 +10,8 @@ django = "*"
 pylint = "*"
 psycopg2 = "*"
 djangorestframework = "*"
+channels-redis = "*"
+channels = "==2.4.0"
 
 [requires]
 python_version = "3.8"
